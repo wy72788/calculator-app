@@ -10,26 +10,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          path: calculator_app
+          path: app
       
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       
-      - name: Install buildozer
+      - name: Install dependencies
         run: |
-          pip install buildozer
-          cd calculator_app
-          # buildozer init  # skip - already exists
+          cd app
+          pip install buildozer kivy
+          pip install python-for-android
       
       - name: Build APK
         run: |
-          cd calculator_app
-          buildozer android debug
+          cd app
+          p4a apk --debug --_private_key_path=key.pem --variant=debug main.py kivy
+        timeout-minutes: 30
       
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: calculator
-          path: calculator_app/bin/*.apk
+          path: app/*.apk
