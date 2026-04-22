@@ -17,12 +17,12 @@ jobs:
         with:
           python-version: '3.11'
       
-      - name: Install dependencies
-        run: |
-          cd app
-          pip install buildozer
-          buildozer init
-          buildozer android debug
+      - name: Build with Buildozer
+        uses: kc1ke/buildozer-action@v1
+        with:
+          path: app
+          target: android
+          mode: debug
       
       - name: Upload APK
         uses: actions/upload-artifact@v4
