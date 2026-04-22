@@ -26,7 +26,7 @@ jobs:
       - name: Build APK
         run: |
           cd app
-          p4a apk --debug --_private_key_path=key.pem --variant=debug main.py kivy
+          p4a apk --debug --arch arm64-v8a --arch armeabi-v7a --variant=debug main.py kivy
         timeout-minutes: 30
       
       - name: Upload APK
