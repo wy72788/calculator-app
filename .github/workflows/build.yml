@@ -21,7 +21,7 @@ jobs:
         run: |
           pip install buildozer
           cd calculator_app
-          buildozer init
+          # buildozer init  # skip - already exists
       
       - name: Build APK
         run: |
